@@ -5,38 +5,42 @@ import Header from './components/Header'
 import OrderSummary from './components/OrderSummary/OrderSummary'
 
 
+// cart: [
+//     {
+//       "id": 1,
+//       "name": "Wireless Headphones",
+//       "description": "High quality sound and long battery life.",
+//       "price": 120,
+//       "quantity": 1,
+//       "stockStatus": "In stock",
+//       "icon": "📦"
+//     },
+//     {
+//       "id": 2,
+//       "name": "Running Shoes",
+//       "description": "Lightweight shoes for daily training.",
+//       "price": 85,
+//       "quantity": 2,
+//       "stockStatus": "Low stock",
+//       "icon": "👟"
+//     },
+//     {
+//       "id": 3,
+//       "name": "Bluetooth Speaker",
+//       "description": "Portable sound for home and travel.",
+//       "price": 60,
+//       "quantity": 1,
+//       "stockStatus": "In stock",
+//       "icon": "🎧"
+//     }
+//   ]
+
+const cart = JSON.parse(localStorage.getItem("cart")) || []
 
 const initialState = {
-  cart: [
-    {
-      "id": 1,
-      "name": "Wireless Headphones",
-      "description": "High quality sound and long battery life.",
-      "price": 120,
-      "quantity": 1,
-      "stockStatus": "In stock",
-      "icon": "📦"
-    },
-    {
-      "id": 2,
-      "name": "Running Shoes",
-      "description": "Lightweight shoes for daily training.",
-      "price": 85,
-      "quantity": 2,
-      "stockStatus": "Low stock",
-      "icon": "👟"
-    },
-    {
-      "id": 3,
-      "name": "Bluetooth Speaker",
-      "description": "Portable sound for home and travel.",
-      "price": 60,
-      "quantity": 1,
-      "stockStatus": "In stock",
-      "icon": "🎧"
-    }
-  ]
+  cart,
 }
+
 
 const reducer = (currentState, action) => {
   switch (action.type) {
@@ -89,6 +93,7 @@ export default function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  
 
   return (
     <div className='min-h-screen bg-slate-50 text-slate-800 '>

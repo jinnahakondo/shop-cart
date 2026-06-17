@@ -1,6 +1,6 @@
 
 
-export default function CartHeader({ totalItem, dispatch }) {
+export default function CartHeader({ totalItem, dispatch, }) {
 
     return (
         <div className="mb-6 flex items-center justify-between">
@@ -9,9 +9,12 @@ export default function CartHeader({ totalItem, dispatch }) {
                 <p className="text-sm text-slate-500">{totalItem} items in your cart</p>
             </div>
 
-            <button onClick={() => dispatch({
-                type: "CLEAR_CART"
-            })} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
+            <button onClick={() => {
+                dispatch({
+                    type: "CLEAR_CART"
+                })
+                localStorage.removeItem("cart")
+            }} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
                 Clear Cart
             </button>
         </div>

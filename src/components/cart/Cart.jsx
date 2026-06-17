@@ -10,11 +10,11 @@ export default function Cart({ totalItem, items, dispatch }) {
             <CartHeader totalItem={totalItem} dispatch={dispatch} />
 
             <div className="space-y-4">
-                {items.map(item => <Cartitem key={item.id} {...item} dispatch={dispatch} />)}
+                {items.map(item => <Cartitem key={item.id} {...item} dispatch={dispatch} items={items} />)}
             </div>
 
             <div className='flex justify-center items-center mt-4'>
-                <AddCartItem dispatch={dispatch}/>
+                <AddCartItem dispatch={dispatch} items={items} />
             </div>
         </section>
     )

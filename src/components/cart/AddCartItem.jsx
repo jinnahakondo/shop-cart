@@ -1,6 +1,6 @@
 
 
-export default function AddCartItem({ dispatch }) {
+export default function AddCartItem({ dispatch, items }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -9,11 +9,18 @@ export default function AddCartItem({ dispatch }) {
         const icon = e.target.icon.value
         const description = e.target.description.value
         const stockStatus = e.target.stockStatus.value
-        const payload = { name, price, icon, description, stockStatus, quantity: 1 }
+        const payload = { name, price, icon, description, stockStatus, quantity: 1, id: items.length + 1 }
         dispatch({
             type: "ADD_ITEM",
             payload
         })
+
+        localStorage.removeItem("cart")
+        const newItems = [
+            ...items, payload
+        ]
+
+        localStorage.setItem("cart", JSON.stringify(newItems))
 
         e.target.reset()
     }

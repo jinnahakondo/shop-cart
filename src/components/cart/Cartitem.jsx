@@ -9,6 +9,7 @@ export default function Cartitem({
     quantity,
     stockStatus,
     dispatch,
+    items
 }) {
 
 
@@ -18,6 +19,10 @@ export default function Cartitem({
             payload: id
         })
 
+        const newItems = items.map(item => item.id === id ? { ...item, quantity: Number(item.quantity - 1) } : item)
+        localStorage.removeItem("cart")
+        localStorage.setItem("cart", JSON.stringify(newItems))
+
     }
 
     const handleIncrement = (id) => {
@@ -26,6 +31,11 @@ export default function Cartitem({
             payload: id
         })
 
+        const newItems = items.map(item => item.id === id ? { ...item, quantity: Number(item.quantity + 1) } : item)
+        console.log(newItems[0]);
+        localStorage.removeItem("cart")
+        localStorage.setItem("cart", JSON.stringify(newItems))
+
     }
 
     const handleRemoveItem = (id) => {
@@ -33,6 +43,10 @@ export default function Cartitem({
             type: "REMOVE_ITEM",
             payload: id
         })
+
+        const newItems = items.filter(item => item.id !== id)
+        localStorage.removeItem("cart")
+        localStorage.setItem("cart", JSON.stringify(newItems))
     }
 
     return (
