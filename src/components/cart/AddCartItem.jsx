@@ -1,6 +1,8 @@
+import useCartContext from "../../hook/useCartContext"
 
 
-export default function AddCartItem({ dispatch, items }) {
+export default function AddCartItem() {
+    const { state, dispatch } = useCartContext()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -9,7 +11,7 @@ export default function AddCartItem({ dispatch, items }) {
         const icon = e.target.icon.value
         const description = e.target.description.value
         const stockStatus = e.target.stockStatus.value
-        const payload = { name, price, icon, description, stockStatus, quantity: 1, id: items.length + 1 }
+        const payload = { name, price, icon, description, stockStatus, quantity: 1, id: state.cart.length + 1 }
         dispatch({
             type: "ADD_ITEM",
             payload
@@ -17,7 +19,7 @@ export default function AddCartItem({ dispatch, items }) {
 
         localStorage.removeItem("cart")
         const newItems = [
-            ...items, payload
+            ...state.cart, payload
         ]
 
         localStorage.setItem("cart", JSON.stringify(newItems))

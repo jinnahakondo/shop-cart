@@ -1,3 +1,4 @@
+import useCartContext from "../../hook/useCartContext"
 
 
 export default function Cartitem({
@@ -8,10 +9,9 @@ export default function Cartitem({
     price,
     quantity,
     stockStatus,
-    dispatch,
-    items
 }) {
 
+    const { state, dispatch } = useCartContext()
 
     const handleDecrement = (id) => {
         dispatch({
@@ -19,7 +19,7 @@ export default function Cartitem({
             payload: id
         })
 
-        const newItems = items.map(item => item.id === id ? { ...item, quantity: Number(item.quantity - 1) } : item)
+        const newItems = state.cart.map(item => item.id === id ? { ...item, quantity: Number(item.quantity - 1) } : item)
         localStorage.removeItem("cart")
         localStorage.setItem("cart", JSON.stringify(newItems))
 
@@ -31,8 +31,8 @@ export default function Cartitem({
             payload: id
         })
 
-        const newItems = items.map(item => item.id === id ? { ...item, quantity: Number(item.quantity + 1) } : item)
-        console.log(newItems[0]);
+        const newItems = state.cart.map(item => item.id === id ? { ...item, quantity: Number(item.quantity + 1) } : item)
+        
         localStorage.removeItem("cart")
         localStorage.setItem("cart", JSON.stringify(newItems))
 
@@ -44,7 +44,7 @@ export default function Cartitem({
             payload: id
         })
 
-        const newItems = items.filter(item => item.id !== id)
+        const newItems = state.cart.filter(item => item.id !== id)
         localStorage.removeItem("cart")
         localStorage.setItem("cart", JSON.stringify(newItems))
     }
