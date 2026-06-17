@@ -1,6 +1,7 @@
 
 import Cart from './components/cart/Cart'
 import Header from './components/Header'
+import OrderSummary from './components/OrderSummary/OrderSummary'
 
 export default function App() {
   return (
@@ -11,7 +12,7 @@ export default function App() {
         </header>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(320px,0.9fr)]">
           <Cart />
-          <div>gello</div>
+          <OrderSummary />
         </div>
       </main>
     </div>
