@@ -41,18 +41,41 @@ const reducer = (currentState, action) => {
     case "CLEAR_CART":
       return { ...currentState, cart: [] };
     case "REMOVE_ITEM":
-      return { ...currentState, cart: currentState.cart.filter(item => item.id !== action.payload) }
+      return {
+        ...currentState,
+        cart: currentState.cart.filter(item => item.id !== action.payload)
+      };
+    case "INCREASE_QTY":
+      return {
+        ...currentState,
+        cart: incrementQuantity(currentState.cart, action.payload)
+      };
+    case "DECREASE_QTY":
+      return {
+        ...currentState,
+        cart: decrementQuantity(currentState.cart, action.payload)
+      };
+    default: currentState;
+
   }
 }
 
-// switch(action.type) {
-//   case "ADD_TO_CART":
-//   case "REMOVE_ITEM":
-//   case "INCREASE_QTY":
-//   case "DECREASE_QTY":
-//   case "CLEAR_CART":
-//   case "APPLY_COUPON":
-//   default:
+
+// increment quantity 
+const incrementQuantity = (cart, id) => {
+  return cart.map(item => item.id === id ?
+    { ...item, quantity: item.quantity + 1 }
+    : item
+  )
+}
+
+// decrement quantity 
+const decrementQuantity = (cart, id) => {
+  return cart.map(item => item.id === id ?
+    { ...item, quantity: item.quantity - 1 }
+    : item
+  )
+}
 
 
 export default function App() {

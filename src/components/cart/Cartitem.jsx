@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 export default function Cartitem({
     id,
@@ -29,10 +29,28 @@ export default function Cartitem({
 
             <div className="flex items-center gap-3 sm:flex-col sm:items-end">
                 <div className="flex items-center rounded-2xl border border-slate-200">
-                    <button className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">−</button>
+
+                    {/* decrement quantity */}
+                    <button
+                        disabled={quantity === 0}
+                        onClick={() => dispatch({
+                            type: "DECREASE_QTY",
+                            payload: id
+                        })}
+                        className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">−</button>
+
+                    {/* quantity */}
                     <span className="min-w-10 px-3 py-2 text-center text-sm font-medium">{quantity}</span>
-                    <button className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">+</button>
+                    {/* increment quantity */}
+                    <button
+                        onClick={() => dispatch({
+                            type: "INCREASE_QTY",
+                            payload: id
+                        })}
+                        className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">+</button>
                 </div>
+
+                {/* remove a item */}
                 <button
                     onClick={() => dispatch({
                         type: "REMOVE_ITEM",

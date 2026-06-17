@@ -1,4 +1,4 @@
-import React from 'react'
+
 import CartHeader from './CartHeader'
 import Cartitem from './Cartitem'
 
