@@ -4,6 +4,8 @@ import Cart from './components/cart/Cart'
 import Header from './components/Header'
 import OrderSummary from './components/OrderSummary/OrderSummary'
 
+
+
 const initialState = {
   cart: [
     {
@@ -55,6 +57,11 @@ const reducer = (currentState, action) => {
         ...currentState,
         cart: decrementQuantity(currentState.cart, action.payload)
       };
+    case "ADD_ITEM":
+      return {
+        ...currentState,
+        cart: [...currentState.cart, action.payload]
+      };
     default: currentState;
 
   }
@@ -81,6 +88,7 @@ const decrementQuantity = (cart, id) => {
 export default function App() {
 
   const [state, dispatch] = useReducer(reducer, initialState)
+
 
   return (
     <div className='min-h-screen bg-slate-50 text-slate-800 '>

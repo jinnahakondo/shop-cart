@@ -10,6 +10,31 @@ export default function Cartitem({
     stockStatus,
     dispatch,
 }) {
+
+
+    const handleDecrement = (id) => {
+        dispatch({
+            type: "DECREASE_QTY",
+            payload: id
+        })
+
+    }
+
+    const handleIncrement = (id) => {
+        dispatch({
+            type: "INCREASE_QTY",
+            payload: id
+        })
+
+    }
+
+    const handleRemoveItem = (id) => {
+        dispatch({
+            type: "REMOVE_ITEM",
+            payload: id
+        })
+    }
+
     return (
         <article className="flex flex-col gap-4 rounded-2xl border border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-4">
@@ -33,31 +58,22 @@ export default function Cartitem({
                     {/* decrement quantity */}
                     <button
                         disabled={quantity === 1}
-                        onClick={() => dispatch({
-                            type: "DECREASE_QTY",
-                            payload: id
-                        })}
+                        onClick={() => handleDecrement(id)}
                         className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">−</button>
 
                     {/* quantity */}
                     <span className="min-w-10 px-3 py-2 text-center text-sm font-medium">{quantity}</span>
                     {/* increment quantity */}
                     <button
-                        onClick={() => dispatch({
-                            type: "INCREASE_QTY",
-                            payload: id
-                        })}
+                        onClick={() => handleIncrement(id)}
                         className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">+</button>
                 </div>
 
                 {/* remove a item */}
                 <button
-                    onClick={() => dispatch({
-                        type: "REMOVE_ITEM",
-                        payload: id
-                    })}
+                    onClick={() => handleRemoveItem(id)}
                     className="text-sm font-medium text-rose-600 hover:text-rose-700">Remove</button>
             </div>
-        </article>
+        </article >
     )
 }

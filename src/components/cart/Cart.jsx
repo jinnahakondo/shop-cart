@@ -1,4 +1,5 @@
 
+import AddCartItem from './AddCartItem'
 import CartHeader from './CartHeader'
 import Cartitem from './Cartitem'
 
@@ -10,6 +11,10 @@ export default function Cart({ totalItem, items, dispatch }) {
 
             <div className="space-y-4">
                 {items.map(item => <Cartitem key={item.id} {...item} dispatch={dispatch} />)}
+            </div>
+
+            <div className='flex justify-center items-center mt-4'>
+                <AddCartItem dispatch={dispatch}/>
             </div>
         </section>
     )

@@ -8,6 +8,7 @@ export default function CartHeader({ totalItem, dispatch }) {
                 <h2 className="text-xl font-semibold text-slate-900">Cart Items</h2>
                 <p className="text-sm text-slate-500">{totalItem} items in your cart</p>
             </div>
+
             <button onClick={() => dispatch({
                 type: "CLEAR_CART"
             })} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
