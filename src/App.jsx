@@ -89,8 +89,8 @@ export default function App() {
           <Header />
         </header>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(320px,0.9fr)]">
-          <Cart items={state.cart} dispatch={dispatch} />
-          <OrderSummary cart={state.cart}/>
+          <Cart items={state.cart} dispatch={dispatch} totalItem={state.cart.length} />
+          <OrderSummary cart={state.cart} />
         </div>
       </main>
     </div>

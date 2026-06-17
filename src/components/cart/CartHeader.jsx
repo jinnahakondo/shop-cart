@@ -1,11 +1,12 @@
-import React from 'react'
 
-export default function CartHeader({ dispatch }) {
+
+export default function CartHeader({ totalItem, dispatch }) {
+
     return (
         <div className="mb-6 flex items-center justify-between">
             <div>
                 <h2 className="text-xl font-semibold text-slate-900">Cart Items</h2>
-                <p className="text-sm text-slate-500">3 items in your cart</p>
+                <p className="text-sm text-slate-500">{totalItem} items in your cart</p>
             </div>
             <button onClick={() => dispatch({
                 type: "CLEAR_CART"
