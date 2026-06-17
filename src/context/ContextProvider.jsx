@@ -1,6 +1,7 @@
 
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { CartContext } from './cartContext'
+
 
 const cart = JSON.parse(localStorage.getItem("cart")) || []
 const initialState = {
@@ -31,7 +32,7 @@ const reducer = (currentState, action) => {
                 ...currentState,
                 cart: [...currentState.cart, action.payload]
             };
-        default: currentState;
+        default: return currentState;
 
     }
 }
@@ -57,8 +58,56 @@ export default function ContextProvider({ children }) {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(state.cart))
+    }, [state.cart])
+
+    const onIncrement = (id) => {
+        dispatch({
+            type: "INCREASE_QTY",
+            payload: id
+        })
+
+    }
+
+
+    const onDecrement = (id) => {
+        dispatch({
+            type: "DECREASE_QTY",
+            payload: id
+        })
+
+    }
+
+    const onRemoveItem = (id) => {
+        dispatch({
+            type: "REMOVE_ITEM",
+            payload: id
+        })
+    }
+
+    const onAddItem = (item) => {
+        const payload = {
+            id: state.cart.length + 1,
+            ...item,
+        }
+
+        dispatch({
+            type: "ADD_ITEM",
+            payload
+        })
+    }
+
+
     return (
-        <CartContext value={{ state, dispatch }}>
+        <CartContext value={{
+            cart: state.cart,
+            dispatch,
+            onDecrement,
+            onIncrement,
+            onRemoveItem,
+            onAddItem
+        }}>
             {children}
         </CartContext>
     )

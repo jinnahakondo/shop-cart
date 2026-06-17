@@ -2,12 +2,12 @@ import useCartContext from "../../hook/useCartContext"
 
 
 export default function CartHeader() {
-    const { state, dispatch } = useCartContext()
+    const { cart, dispatch } = useCartContext()
     return (
         <div className="mb-6 flex items-center justify-between">
             <div>
                 <h2 className="text-xl font-semibold text-slate-900">Cart Items</h2>
-                <p className="text-sm text-slate-500">{state.cart.length} items in your cart</p>
+                <p className="text-sm text-slate-500">{cart.length} items in your cart</p>
             </div>
 
             <button onClick={() => {

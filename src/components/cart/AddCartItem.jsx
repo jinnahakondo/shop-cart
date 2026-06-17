@@ -2,27 +2,19 @@ import useCartContext from "../../hook/useCartContext"
 
 
 export default function AddCartItem() {
-    const { state, dispatch } = useCartContext()
+    const { onAddItem } = useCartContext()
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
         const name = e.target.name.value
         const price = e.target.price.value
         const icon = e.target.icon.value
         const description = e.target.description.value
         const stockStatus = e.target.stockStatus.value
-        const payload = { name, price, icon, description, stockStatus, quantity: 1, id: state.cart.length + 1 }
-        dispatch({
-            type: "ADD_ITEM",
-            payload
-        })
+        const payload = { name, price, icon, description, stockStatus, quantity: 1, }
 
-        localStorage.removeItem("cart")
-        const newItems = [
-            ...state.cart, payload
-        ]
-
-        localStorage.setItem("cart", JSON.stringify(newItems))
+        onAddItem(payload)
 
         e.target.reset()
     }

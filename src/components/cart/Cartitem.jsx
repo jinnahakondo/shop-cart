@@ -11,43 +11,9 @@ export default function Cartitem({
     stockStatus,
 }) {
 
-    const { state, dispatch } = useCartContext()
+    const {  onDecrement, onIncrement, onRemoveItem } = useCartContext()
 
-    const handleDecrement = (id) => {
-        dispatch({
-            type: "DECREASE_QTY",
-            payload: id
-        })
 
-        const newItems = state.cart.map(item => item.id === id ? { ...item, quantity: Number(item.quantity - 1) } : item)
-        localStorage.removeItem("cart")
-        localStorage.setItem("cart", JSON.stringify(newItems))
-
-    }
-
-    const handleIncrement = (id) => {
-        dispatch({
-            type: "INCREASE_QTY",
-            payload: id
-        })
-
-        const newItems = state.cart.map(item => item.id === id ? { ...item, quantity: Number(item.quantity + 1) } : item)
-        
-        localStorage.removeItem("cart")
-        localStorage.setItem("cart", JSON.stringify(newItems))
-
-    }
-
-    const handleRemoveItem = (id) => {
-        dispatch({
-            type: "REMOVE_ITEM",
-            payload: id
-        })
-
-        const newItems = state.cart.filter(item => item.id !== id)
-        localStorage.removeItem("cart")
-        localStorage.setItem("cart", JSON.stringify(newItems))
-    }
 
     return (
         <article className="flex flex-col gap-4 rounded-2xl border border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between">
@@ -72,20 +38,20 @@ export default function Cartitem({
                     {/* decrement quantity */}
                     <button
                         disabled={quantity === 1}
-                        onClick={() => handleDecrement(id)}
+                        onClick={() => onDecrement(id)}
                         className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">−</button>
 
                     {/* quantity */}
                     <span className="min-w-10 px-3 py-2 text-center text-sm font-medium">{quantity}</span>
                     {/* increment quantity */}
                     <button
-                        onClick={() => handleIncrement(id)}
+                        onClick={() => onIncrement(id)}
                         className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">+</button>
                 </div>
 
                 {/* remove a item */}
                 <button
-                    onClick={() => handleRemoveItem(id)}
+                    onClick={() => onRemoveItem(id)}
                     className="text-sm font-medium text-rose-600 hover:text-rose-700">Remove</button>
             </div>
         </article >

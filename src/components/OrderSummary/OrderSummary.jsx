@@ -1,9 +1,9 @@
 import useCartContext from "../../hook/useCartContext"
 
 export default function OrderSummary() {
-    const {state}=useCartContext()
+    const {cart}=useCartContext()
 
-    const subTotal = state.cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+    const subTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
 
     const tax = (subTotal / 100) * 5
 
