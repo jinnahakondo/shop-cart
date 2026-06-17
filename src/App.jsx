@@ -1,4 +1,5 @@
-import React from 'react'
+
+import Cart from './components/cart/Cart'
 import Header from './components/Header'
 
 export default function App() {
@@ -8,6 +9,10 @@ export default function App() {
         <header>
           <Header />
         </header>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(320px,0.9fr)]">
+          <Cart />
+          <div>gello</div>
+        </div>
       </main>
     </div>
   )
