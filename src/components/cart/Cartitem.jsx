@@ -1,15 +1,19 @@
 import React from 'react'
 
 export default function Cartitem({
+    id,
     icon,
     name,
     description,
     price,
     quantity,
-    stockStatus }) {
+    stockStatus,
+    dispatch,
+}) {
     return (
         <article className="flex flex-col gap-4 rounded-2xl border border-slate-200 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-4">
+                {/* icon  */}
                 <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-2xl">
                     {icon}
                 </div>
@@ -26,10 +30,15 @@ export default function Cartitem({
             <div className="flex items-center gap-3 sm:flex-col sm:items-end">
                 <div className="flex items-center rounded-2xl border border-slate-200">
                     <button className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">−</button>
-                    <span className="min-w-10 px-3 py-2 text-center text-sm font-medium">1</span>
+                    <span className="min-w-10 px-3 py-2 text-center text-sm font-medium">{quantity}</span>
                     <button className="px-4 py-2 text-lg text-slate-600 hover:bg-slate-50">+</button>
                 </div>
-                <button className="text-sm font-medium text-rose-600 hover:text-rose-700">Remove</button>
+                <button
+                    onClick={() => dispatch({
+                        type: "REMOVE_ITEM",
+                        payload: id
+                    })}
+                    className="text-sm font-medium text-rose-600 hover:text-rose-700">Remove</button>
             </div>
         </article>
     )
