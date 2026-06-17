@@ -6,7 +6,7 @@
 A high-performance, predictable shopping cart architecture built with React `useReducer` and Context API. This project avoids heavy external state management libraries (like Redux or Zustand) to demonstrate how complex, interdependent state changes can be handled cleanly, explicitly, and immutably using native React primitives.
 
 ## 🚀 Live Demo & Links
-- ** <a href="https://shop-cart-derzjsau2-jinnahs-projects-5d890d64.vercel.app/">Live Preview<a/>** 
+-  <a href="https://shop-cart-derzjsau2-jinnahs-projects-5d890d64.vercel.app/">Live Preview<a/> 
 - **Design Pattern:** Unidirectional Data Flow with Command-Pattern Reducers
 
 ---
