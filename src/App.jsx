@@ -4,7 +4,6 @@ import Header from './components/Header'
 import OrderSummary from './components/OrderSummary/OrderSummary'
 
 
-
 export default function App() {
 
   return (

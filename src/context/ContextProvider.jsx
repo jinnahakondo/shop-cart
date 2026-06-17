@@ -1,11 +1,14 @@
 
 import { useEffect, useReducer } from 'react';
 import { CartContext } from './cartContext'
+import { cartData } from '../data/cart.data';
 
 
-const cart = JSON.parse(localStorage.getItem("cart")) || []
+const initialData = JSON.parse(localStorage.getItem("cart"))
+const cart = (initialData && initialData.length) > 0 ? initialData : cartData
+
 const initialState = {
-    cart,
+    cart
 }
 
 const reducer = (currentState, action) => {
