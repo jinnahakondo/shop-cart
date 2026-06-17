@@ -1,6 +1,15 @@
 import React from 'react'
 
-export default function OrderSummary() {
+export default function OrderSummary({ cart }) {
+
+    const subTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+
+    const tax = (subTotal / 100) * 5
+
+    const shipingFee = subTotal ? 10:0
+
+    const total = subTotal + tax + shipingFee
+
     return (
         <aside className="h-fit rounded-3xl bg-white p-6 shadow-soft ring-1 ring-slate-200">
             <h2 className="text-xl font-semibold text-slate-900">Order Summary</h2>
@@ -9,21 +18,21 @@ export default function OrderSummary() {
             <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between text-sm">
                     <span className="text-slate-500">Subtotal</span>
-                    <span className="font-medium text-slate-900">$265.00</span>
+                    <span className="font-medium text-slate-900">${subTotal}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                     <span className="text-slate-500">Tax (5%)</span>
-                    <span className="font-medium text-slate-900">$13.25</span>
+                    <span className="font-medium text-slate-900">${tax.toFixed(2)}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                     <span className="text-slate-500">Shipping</span>
-                    <span className="font-medium text-slate-900">$10.00</span>
+                    <span className="font-medium text-slate-900">${shipingFee.toFixed(2)}</span>
                 </div>
 
                 <div className="border-t border-slate-200 pt-4">
                     <div className="flex items-center justify-between">
                         <span className="text-base font-semibold text-slate-900">Total</span>
-                        <span className="text-2xl font-bold text-slate-900">$288.25</span>
+                        <span className="text-2xl font-bold text-slate-900">${total.toFixed(2)}</span>
                     </div>
                 </div>
 

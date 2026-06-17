@@ -32,7 +32,7 @@ export default function Cartitem({
 
                     {/* decrement quantity */}
                     <button
-                        disabled={quantity === 0}
+                        disabled={quantity === 1}
                         onClick={() => dispatch({
                             type: "DECREASE_QTY",
                             payload: id
